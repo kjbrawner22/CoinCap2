@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link href="{{ url_for('static', filename='css/register.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<h2 id="register-header">Register</h2>
+<form action="" method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.email(placeholder="Email") }}
+	{{ form.password(placeholder="Password") }}
+	{{ form.password2(placeholder="Repeat Password") }}
+	{{ form.submit() }}
+	<div id="errors">
+		{% for error in form.email.errors %}
+			<p class="error">[{{ error }}]</p>
+		{% endfor %}
+		{% for error in form.password.errors %}
+			<p class="error">[{{ error }}]</p>
+		{% endfor %}
+		{% for error in form.password2.errors %}
+			<p class="error">[{{ error }}]</p>
+		{% endfor %}
+	</div>
+</form>
+{% endblock %}

@@ -18,8 +18,23 @@
 		<a class="nav-item" href="{{url_for('index')}}">
 			<p>About</p>
 		</a>
+		{% if current_user.is_anonymous %}
 		<a class="nav-item" href="{{url_for('login')}}">
 			<p>Log In</p>
 		</a>
+		{% else %}
+		<a class="nav-item" href="{{url_for('logout')}}">
+			<p>Log Out</p>
+		</a>
+		{% endif %}
 	</div>
+	{% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
 	{% block body %}{% endblock %}</body>

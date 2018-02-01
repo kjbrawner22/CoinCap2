@@ -1,3 +1,7 @@
+h2 {
+	text-align: center;
+}
+
 form {
 	display: grid;
 	width: 20%;
@@ -9,8 +13,17 @@ form {
 	grid-template-rows: repeat(4, 1fr);
 	grid-template-areas: "email email email"
 											 "password password password"
-											 "remember . ."
+											 "remember errors errors"
 											 "submit text register";
+}
+
+.error {
+	color: red;
+	text-align: center;
+}
+
+#errors {
+	grid-area: errors;
 }
 
 #email {

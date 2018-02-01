@@ -1,0 +1,77 @@
+h2 {
+	text-align: center;
+}
+
+form {
+	display: grid;
+	width: 20%;
+	margin: auto;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(4, 1fr) 10%;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 1%;
+	grid-template-areas: "email"
+											 "password"
+											 "password2"
+											 "register"
+											 "errors";
+}
+
+.error {
+	color: red;
+	text-align: center;
+}
+
+#email {
+	grid-area: email;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	padding-top: 27%;
+	padding-bottom: 27%;
+	margin-bottom: 5%;
+}
+
+#email:hover {
+	border: 1px solid black;
+}
+
+#password {
+	grid-area: password;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	margin-bottom: 5%;
+}
+
+#password:hover {
+	border: 1px solid black;
+}
+
+#password2 {
+	grid-area: password2;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+}
+
+#password2:hover {
+	border: 1px solid black;
+}
+
+#submit {
+	grid-area: register;
+	background-color: lightgray;
+	width: auto;
+	margin: auto;
+	border: none;
+	padding: 20% 8%;
+	border-radius: 5px;
+}
+
+#submit:hover {
+	background-color: black;
+	color: white;
+}
+
+#errors {
+	grid-area: errors;
+}

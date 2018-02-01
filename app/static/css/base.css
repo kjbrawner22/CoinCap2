@@ -2,6 +2,11 @@ html {
 	font-family: serif;
 }
 
+ul {
+	text-align: center;
+	list-style: none;
+}
+
 input {
 	font-family: serif;
 	font-size: 1em;
