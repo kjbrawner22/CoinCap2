@@ -1,0 +1,59 @@
+p {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+}
+
+#portfolio-title-wrapper {
+	display: grid;
+	width: 50%;
+	margin: auto;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-areas: ". title button";
+}
+
+#portfolio-header {
+	grid-area: title;
+}
+
+#add-coin-header {
+	grid-area: button;
+}
+
+#add-coin {
+	text-align: center;
+	margin: auto;
+	border-radius: 5px;
+	padding: 3%;
+	text-decoration: none;
+	color: inherit;
+	background-color: lightgray;
+}
+
+#add-coin:hover {
+	background-color: black;
+	color: white;
+}
+
+#add-coin:focus {
+	outline: none;
+}
+
+#coins-wrapper {
+	display: grid;
+	width: 50%;
+	margin: auto;
+	border: 1px solid black;
+	border-radius: 5px;
+	grid-template-columns: 10% repeat(3, 1fr);
+}

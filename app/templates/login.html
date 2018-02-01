@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<form action="" method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.email(placeholder="Email") }}
+	{{ form.password(placeholder="Password") }}
+	<p id="p-remember">{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+	{{ form.submit() }}
+	<p id="text">OR</p>
+	<a id="register" href="{{ url_for('register') }}">Register</a>
+</form>
+{% endblock %}

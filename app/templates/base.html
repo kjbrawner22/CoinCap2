@@ -1,0 +1,25 @@
+<head>
+	{% if title %}
+		<title>{{ title }}</title>
+	{% else %}
+		<title>No title assigned</title>
+	{% endif %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+	{% block head %}{% endblock %}
+</head>
+
+<body>
+	<h1 class="header">Coin Cap</h1>
+	<div class="nav">
+		<a class="nav-item" href="{{url_for('index')}}">
+			<p>Home</p>
+		</a>
+		<a class="nav-item" href="{{url_for('index')}}">
+			<p>About</p>
+		</a>
+		<a class="nav-item" href="{{url_for('login')}}">
+			<p>Log In</p>
+		</a>
+	</div>
+	{% block body %}{% endblock %}</body>

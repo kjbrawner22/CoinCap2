@@ -1,0 +1,35 @@
+html {
+	font-family: serif;
+}
+
+input {
+	font-family: serif;
+	font-size: 1em;
+}
+
+.header {
+	text-align: center;
+}
+
+.nav {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	height: auto;
+	position: sticky;
+	top: 0;
+	background-color: rgba(255,255,255,.3);
+}
+
+.nav-item {
+	text-align: center;
+	text-decoration: none;
+	color: inherit;
+}
+
+.nav-item:hover {
+	color: rgba(0,0,0,.3);
+}
+
+.nav-item:focus {
+	outline: none;
+}
