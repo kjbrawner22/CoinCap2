@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
+<link href="{{ url_for('static', filename='css/add-coin.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-<form action="">
-	<input type='search' placeholder="Search">
+<form action="" method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.search(placeholder="Search Symbol or Name", class="awesomplete", list="coins") }}
+	<datalist id="coins">
+		{% for coin in coins %}
+		<option>{{ coin }}</option>
+		{% endfor %}
+	</datalist>
+	{{ form.submit() }}
 </form>
 {% endblock %}

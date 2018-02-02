@@ -19,3 +19,7 @@ class RegisterForm(FlaskForm):
 		user = User.query.filter_by(email=email.data).first()
 		if user is not None:
 			raise ValidationError('This email address is already in use.')
+
+class AddCoinForm(FlaskForm):
+	search = StringField('Enter Symbol or Name', validators=[DataRequired()])
+	submit = SubmitField('Submit')

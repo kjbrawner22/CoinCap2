@@ -1,0 +1,30 @@
+form {
+	display: grid;
+	width: 20%;
+	margin: auto;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr;
+}
+
+#search {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	padding: 25% 0 25% 0;
+}
+
+#submit {
+	width: auto;
+	padding: 20% 10%;
+	margin: auto;
+	border: none;
+	border-radius: 5px;
+}
+
+#submit:hover {
+	background-color: black;
+	color: white;
+}
+
+#submit:focus {
+	outline: none;
+}

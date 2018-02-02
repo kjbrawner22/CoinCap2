@@ -19,12 +19,12 @@ class User(UserMixin, db.Model):
 
 class Coin(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	symbol = db.Column(db.String(5), index=True, unique=True)
+	name = db.Column(db.String(64), index=True)
 	amount = db.Column(db.Integer, index=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 	def __repr__(self):
-		return '<Coin %s>' % self.symbol
+		return '<Coin %s>' % self.name
 
 @login.user_loader
 def load_user(id):

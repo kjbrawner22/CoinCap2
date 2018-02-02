@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script defer src="https://use.fontawesome.com/releases/v5.0.3/js/all.js"></script>
+<link rel="stylesheet" href="{{url_for('static', filename='logos/webfont/cryptocoins.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='logos/webfont/cryptocoins-colors.css')}}">
+<link href="{{ url_for('static', filename='css/portfolio.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div id="portfolio-title-wrapper">
+	<h2 id="portfolio-header">Portfolio</h2>
+	<h2 id="add-coin-header"><a id="add-coin" href="{{url_for('add_coin')}}"><i class="fas fa-plus-circle"></i> Add Coin</a></h2>
+</div>
+<div id="coins-wrapper">
+	<p>Coin</p>
+	<p>Holdings</p>
+	<p>USD</p>
+	<p>BTC</p>
+	{% for coin in coins %}
+	<div>
+		<p><i class="cc {{ coin.symbol }}"></i> {{coin.symbol}}</p>
+	</div>
+	<p>{{ coin.amount }}</p>
+	<p>{{ coin.amount * coin.price_usd }}</p>
+	<p>{{ coin.amount * coin.price_btc }}</p>
+	{% endfor %}
+</div>
+{% endblock %}
