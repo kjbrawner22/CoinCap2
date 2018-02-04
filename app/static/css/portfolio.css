@@ -6,9 +6,17 @@ h2 {
 	text-align: center;
 }
 
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+}
+
 #portfolio-title-wrapper {
 	display: grid;
-	width: 50%;
+	width: 95%;
 	margin: auto;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-areas: ". title button";
@@ -22,6 +30,10 @@ h2 {
 	grid-area: button;
 }
 
+#add-coin-text {
+	display: none;
+}
+
 #add-coin {
 	text-align: center;
 	margin: auto;
@@ -29,7 +41,6 @@ h2 {
 	padding: 3%;
 	text-decoration: none;
 	color: inherit;
-	background-color: lightgray;
 }
 
 #add-coin:hover {
@@ -43,9 +54,31 @@ h2 {
 
 #coins-wrapper {
 	display: grid;
-	width: 50%;
+	width: 95%;
 	margin: auto;
+	vertical-align: middle;
 	border: 1px solid black;
 	border-radius: 5px;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
+	line-height: auto;
+}
+
+@media only screen and (min-width: 600px) {
+	#portfolio-title-wrapper {
+		width: 50%;
+	}
+
+	#coins-wrapper {
+		width: 50%;
+	}
+}
+
+@media only screen and (min-width: 850px) {
+	#add-coin-text {
+		display: inline-block;
+	}
+
+	#add-coin {
+		background-color: lightgray;
+	}
 }

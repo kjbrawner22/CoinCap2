@@ -20,9 +20,15 @@ h2 {
 
 #coins-wrapper {
 	display: grid;
-	width: 50%;
+	width: 95%;
 	margin: auto;
 	border: 1px solid black;
 	border-radius: 5px;
 	grid-template-columns: 10% repeat(3, 1fr);
+}
+
+@media only screen and (min-width: 600px) {
+	#coins-wrapper {
+		width: 50%;
+	}
 }

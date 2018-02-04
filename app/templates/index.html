@@ -15,7 +15,7 @@
 	<p>24HR Change</p>
 	{% for coin in coins %}
 	<p>{{ coin.rank }}</p>
-	<p><i class="cc {{ coin.symbol }}"></i> {{ coin.name }} ({{ coin.symbol }})</p>
+	<p><img src="https://files.coinmarketcap.com/static/img/coins/16x16/{{ coin.id }}.png"> {{ coin.name }} ({{ coin.symbol }})</p>
 	<p>${{ coin.price_usd }}</p>
 	{% if coin.percent_change_24h|float < 0 %}
 	<p class="red">{{ coin.percent_change_24h }}%</p>

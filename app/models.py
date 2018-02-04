@@ -20,7 +20,7 @@ class User(UserMixin, db.Model):
 class Coin(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(64), index=True)
-	amount = db.Column(db.Integer, index=True)
+	amount = db.Column(db.Float, index=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 	def __repr__(self):

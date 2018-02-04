@@ -1,7 +1,7 @@
 form {
 	display: grid;
-	width: 20%;
-	margin: auto;
+	width: 60%;
+	margin: 0 auto;
 	grid-template-columns: 1fr;
 	grid-template-rows: 1fr 1fr;
 }
@@ -9,7 +9,7 @@ form {
 #search {
 	border: 1px solid lightgray;
 	border-radius: 5px;
-	padding: 25% 0 25% 0;
+	padding: 25% 0%;
 }
 
 #submit {
@@ -27,4 +27,10 @@ form {
 
 #submit:focus {
 	outline: none;
+}
+
+@media only screen and (min-width: 600px) {
+	form {
+		width: 20%;
+	}
 }

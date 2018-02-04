@@ -2,11 +2,20 @@ html {
 	font-family: serif;
 }
 
+body {
+	margin-right: 0;
+	margin-left: 0;
+}
+
 ul {
 	text-align: center;
 	list-style: none;
 	margin: auto;
 	padding: 0;
+}
+
+li {
+	font-weight: bold;
 }
 
 input {
@@ -24,7 +33,7 @@ input {
 	height: auto;
 	position: sticky;
 	top: 0;
-	background-color: rgba(255,255,255,.3);
+	background-color: rgba(255,255,255,.9);
 }
 
 .nav-item {

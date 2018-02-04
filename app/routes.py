@@ -4,10 +4,10 @@ from flask import render_template, redirect, url_for, request, flash
 from app import db
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import LoginForm, RegisterForm, AddCoinForm
-from app.models import User
+from app.models import User, Coin
 
-@app.route('/')
 @app.route('/index')
+@app.route('/')
 def index():
 	title = "Coin Cap | Home"
 	return render_template('index.html', coins=cap.ticker(limit=10), title=title)
@@ -33,7 +33,7 @@ def login():
 @app.route('/logout')
 def logout():
 	logout_user()
-	return redirect(url_for('login'))
+	return redirect(url_for('index'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -60,19 +60,25 @@ def portfolio():
 		if c is not None:
 			c['amount'] = coin.amount
 			coins.append(c)
+	coins.sort(key=lambda x: (x['amount'], x['rank']))
 	return render_template('portfolio.html', coins=coins, title=title)
 
 @app.route('/add-coin', methods=['GET', 'POST'])
 @login_required
 def add_coin():
 	title = "Coin Cap | Add Coin"
-	coins = ["%s (%s)" % (c['name'], c['symbol']) for c in cap.ticker(limit=0)]
+	coin_dict = {}
+	for c in cap.ticker(limit=0):
+		coin_dict['%s (%s)' % (c['name'], c['symbol'])] = c['id']
 	form = AddCoinForm()
 	if form.validate_on_submit():
-		if form.search.data in coins:
-			flash('coin added!')
+		if form.search.data in coin_dict.keys():
+			c = Coin(name=coin_dict[form.search.data], amount=0.0, holder=current_user)
+			db.session.add(c)
+			db.session.commit()
+			flash('Coin added!')
 			return redirect(url_for('portfolio'))
 		else:
-			flash('coin does not exist')
+			flash('Please choose a valid option.')
 			return redirect(url_for('portfolio'))
-	return render_template('add-coin.html', coins=coins, form=form, title=title)
+	return render_template('add-coin.html', coins=coin_dict.keys(), form=form, title=title)
