@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<script defer src="https://use.fontawesome.com/releases/v5.0.3/js/all.js"></script>
 <link href="{{ url_for('static', filename='css/portfolio.css') }}" rel="stylesheet">
 {% endblock %}
 
@@ -11,17 +10,21 @@
 	<h2 id="add-coin-header"><a id="add-coin" href="{{url_for('add_coin')}}"><i class="fas fa-plus-circle"></i> <span id="add-coin-text">Add Coin</span></a></h2>
 </div>
 <div id="coins-wrapper">
-	<p>Coin</p>
-	<p>Holdings</p>
-	<p>Price</p>
+	<div class="coin-row-wrapper">
+		<p>Coin</p>
+		<p>Holdings</p>
+		<p>Price</p>
+	</div>
 	{% for coin in coins %}
-	<p><img src="https://files.coinmarketcap.com/static/img/coins/16x16/{{ coin.id }}.png"><br>{{coin.symbol}}</p>
-	<p>{{ coin.amount }}<br>${{ coin.amount * coin.price_usd|float }} / Ƀ{{ coin.amount * coin.price_btc|float }}</p>
-	{% if coin.percent_change_24h|float < 0 %}
-	<p>${{ coin.price_usd }}<br><span class="red">{{ coin.percent_change_24h }}%</span></p>
-	{% else %}
-	<p>${{ coin.price_usd }}<br><span class="green">{{ coin.percent_change_24h }}%</span></p>
-	{% endif %}
+	<a href="{{ url_for('coin', coin_id=coin.id) }}"><div class="coin-row-wrapper">
+		<p><img src="https://files.coinmarketcap.com/static/img/coins/16x16/{{ coin.id }}.png"><br>{{coin.symbol}}</p>
+		<p>{{ coin.amount }}<br>${{ coin.amount * coin.price_usd|float }} / Ƀ{{ coin.amount * coin.price_btc|float }}</p>
+		{% if coin.percent_change_24h|float < 0 %}
+		<p>${{ coin.price_usd }}<br><span class="red">{{ coin.percent_change_24h }}%</span></p>
+		{% else %}
+		<p>${{ coin.price_usd }}<br><span class="green">{{ coin.percent_change_24h }}%</span></p>
+		{% endif %}
+	</div></a>
 	{% endfor %}
 </div>
 {% endblock %}

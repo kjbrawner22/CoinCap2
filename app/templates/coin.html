@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/coin.css') }}">
+{% endblock %}
+
+{% block body %}
+<i class="fas fa-arrow-left"></i>
+<h2>
+	<img src="https://files.coinmarketcap.com/static/img/coins/128x128/{{ coin.id }}.png">
+	<br> {{ coin.rank }}. {{ coin.name }} ({{ coin.symbol }})
+</h2>
+<a href="{{url_for('delete_coin', coin_id=coin.id)}}">
+	Delete Coin
+</a>
+
+{% endblock %}

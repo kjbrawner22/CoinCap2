@@ -1,3 +1,4 @@
+from operator import itemgetter
 from app import app, cap
 from werkzeug.urls import url_parse
 from flask import render_template, redirect, url_for, request, flash
@@ -6,12 +7,14 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import LoginForm, RegisterForm, AddCoinForm
 from app.models import User, Coin
 
+#home endpoint
 @app.route('/index')
 @app.route('/')
 def index():
 	title = "Coin Cap | Home"
 	return render_template('index.html', coins=cap.ticker(limit=10), title=title)
 
+#login endpoint
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if current_user.is_authenticated:
@@ -30,11 +33,13 @@ def login():
 		return redirect(next_page)
 	return render_template('login.html', title=title, form=form)
 
+#logout endpoint
 @app.route('/logout')
 def logout():
 	logout_user()
 	return redirect(url_for('index'))
 
+#register endpoint
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	if current_user.is_authenticated:
@@ -50,6 +55,7 @@ def register():
 		return redirect('login')
 	return render_template('register.html', form=form, title=title)
 
+#portfolio endpoint
 @app.route('/portfolio')
 @login_required
 def portfolio():
@@ -57,10 +63,12 @@ def portfolio():
 	coins = []
 	for coin in current_user.coins:
 		c = cap.ticker(currency=coin.name)[0]
+		#change rank attribute to house an int for sorting of coins
+		c['rank'] = int(c['rank'])
 		if c is not None:
 			c['amount'] = coin.amount
 			coins.append(c)
-	coins.sort(key=lambda x: (x['amount'], x['rank']))
+	coins.sort(key=itemgetter('amount', 'rank'))
 	return render_template('portfolio.html', coins=coins, title=title)
 
 @app.route('/add-coin', methods=['GET', 'POST'])
@@ -82,3 +90,31 @@ def add_coin():
 			flash('Please choose a valid option.')
 			return redirect(url_for('portfolio'))
 	return render_template('add-coin.html', coins=coin_dict.keys(), form=form, title=title)
+
+@app.route('/delete-coin/<coin_id>')
+@login_required
+def delete_coin(coin_id):
+	for coin in current_user.coins:
+		if coin_id == coin.name:
+			db.session.delete(coin)
+			db.session.commit()
+			#return right away in case of duplicate coin
+			return redirect(url_for('portfolio'))
+	return redirect(url_for('portfolio'))
+
+@app.route('/portfolio/<coin_id>')
+@login_required
+def coin(coin_id):
+	c = cap.ticker(currency=coin_id)
+	#check if API returns valid coin(see 'coinmarketcap.com/api')
+	if type(c) is list:
+		c = c[0]
+		title = "Coin Cap | %s" % c['name']
+		for coin in current_user.coins:
+			if c == coin.name:
+				c['amount'] = coin.amount
+		return render_template('coin.html', coin=c, title=title)
+	else:
+		#returned an error response
+		flash('Unknown coin name.')
+		return redirect(url_for('portfolio'))

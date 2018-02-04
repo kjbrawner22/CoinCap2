@@ -1,3 +1,8 @@
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 p {
 	text-align: center;
 }
@@ -53,14 +58,21 @@ h2 {
 }
 
 #coins-wrapper {
-	display: grid;
 	width: 95%;
 	margin: auto;
 	vertical-align: middle;
 	border: 1px solid black;
 	border-radius: 5px;
+}
+
+.coin-row-wrapper {
+	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	line-height: auto;
+	border: 1px solid black;
+}
+
+.coin-row-wrapper:hover {
+	box-shadow: 0 0 20px black;
 }
 
 @media only screen and (min-width: 600px) {
