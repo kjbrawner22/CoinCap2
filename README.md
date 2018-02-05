@@ -1,5 +1,5 @@
 # CoinCap2
-Flask Web App for tracking your cryptocurrency portfolio.
+Flask Web App for tracking your cryptocurrency portfolio. Check out the progressive demo at https://coin-cap-heroku.herokuapp.com/
 
 ## Updates - Most recent at the top
 2/4/18 - Added ability to click a held coin and go to info page. On that page you will be able to view stats about it. Right now, you can only delete the coin from your portfolio.
