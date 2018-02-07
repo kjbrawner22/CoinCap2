@@ -1,3 +1,7 @@
+body {
+	text-align: center;
+}
+
 h2 {
 	text-align: center;
 	margin: 0;
@@ -5,6 +9,27 @@ h2 {
 
 img {
 	text-align: right;
+}
+
+#amount {
+	text-align: center;
+}
+
+#delete {
+	text-decoration: none;
+	background-color: lightgray;
+	color: inherit;
+	border-radius: 5px;
+	padding: 5px 10px;
+}
+
+#delete:hover {
+	background-color: black;
+	color: white;
+}
+
+#delete:focus {
+	outline: none;
 }
 
 #coin-title-wrapper {

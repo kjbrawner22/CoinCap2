@@ -4,7 +4,7 @@ from werkzeug.urls import url_parse
 from flask import render_template, redirect, url_for, request, flash
 from app import db
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, RegisterForm, AddCoinForm
+from app.forms import LoginForm, RegisterForm, AddCoinForm, UpdateHoldingsForm
 from app.models import User, Coin
 
 #home endpoint
@@ -61,15 +61,17 @@ def register():
 def portfolio():
 	title = "Coin Cap | Portfolio"
 	coins = []
+	total = 0
 	for coin in current_user.coins:
 		c = cap.ticker(currency=coin.name)[0]
-		#change rank attribute to house an int for sorting of coins
+		#change rank, price_usd attributes to house an int, float for sorting of coins
 		c['rank'] = int(c['rank'])
 		if c is not None:
 			c['amount'] = coin.amount
 			coins.append(c)
-	coins.sort(key=itemgetter('amount', 'rank'))
-	return render_template('portfolio.html', coins=coins, title=title)
+			total += c['amount'] * float(c['price_usd'])
+	coins.sort(key=lambda x: (x['amount'] * float(x['price_usd'])), reverse=True)
+	return render_template('portfolio.html', coins=coins, total=total, title=title)
 
 @app.route('/add-coin', methods=['GET', 'POST'])
 @login_required
@@ -102,18 +104,26 @@ def delete_coin(coin_id):
 			return redirect(url_for('portfolio'))
 	return redirect(url_for('portfolio'))
 
-@app.route('/portfolio/<coin_id>')
+@app.route('/portfolio/<coin_id>', methods=['GET', 'POST'])
 @login_required
 def coin(coin_id):
+	form = UpdateHoldingsForm()
+	if form.validate_on_submit():
+		c = Coin.query.filter_by(holder=current_user, name=coin_id).first()
+		if c is not None:
+			c.amount = form.amount.data
+			db.session.commit()
+			redirect(url_for('coin', coin_id=coin_id))
 	c = cap.ticker(currency=coin_id)
 	#check if API returns valid coin(see 'coinmarketcap.com/api')
 	if type(c) is list:
 		c = c[0]
 		title = "Coin Cap | %s" % c['name']
 		for coin in current_user.coins:
-			if c == coin.name:
+			if c['id'] == coin.name:
 				c['amount'] = coin.amount
-		return render_template('coin.html', coin=c, title=title)
+				print(c['amount'])
+		return render_template('coin.html', coin=c, form=form, title=title)
 	else:
 		#returned an error response
 		flash('Unknown coin name.')

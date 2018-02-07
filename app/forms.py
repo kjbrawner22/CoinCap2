@@ -1,6 +1,6 @@
 from app.models import User
 from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField,BooleanField,SubmitField
+from wtforms import StringField,PasswordField,BooleanField,SubmitField, DecimalField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 
 class LoginForm(FlaskForm):
@@ -23,3 +23,7 @@ class RegisterForm(FlaskForm):
 class AddCoinForm(FlaskForm):
 	search = StringField('Enter Symbol or Name', validators=[DataRequired()])
 	submit = SubmitField('Submit')
+
+class UpdateHoldingsForm(FlaskForm):
+	amount = DecimalField('Amount', places=8, validators=[DataRequired()])
+	submit = SubmitField('Update')

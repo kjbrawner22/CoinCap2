@@ -6,6 +6,7 @@
 
 {% block body %}
 <div id="portfolio-title-wrapper">
+	<h2>${{ '%0.2f' | format(total) }}</h2>
 	<h2 id="portfolio-header">Portfolio</h2>
 	<h2 id="add-coin-header"><a id="add-coin" href="{{url_for('add_coin')}}"><i class="fas fa-plus-circle"></i> <span id="add-coin-text">Add Coin</span></a></h2>
 </div>
@@ -18,7 +19,7 @@
 	{% for coin in coins %}
 	<a href="{{ url_for('coin', coin_id=coin.id) }}"><div class="coin-row-wrapper">
 		<p><img src="https://files.coinmarketcap.com/static/img/coins/16x16/{{ coin.id }}.png"><br>{{coin.symbol}}</p>
-		<p>{{ coin.amount }}<br>${{ coin.amount * coin.price_usd|float }} / Ƀ{{ coin.amount * coin.price_btc|float }}</p>
+		<p>{{ coin.amount }} {{ coin.symbol }}<br>${{ '%0.2f' | format(coin.amount * coin.price_usd|float) }} / Ƀ{{ '%0.8f' | format(coin.amount * coin.price_btc|float) }}</p>
 		{% if coin.percent_change_24h|float < 0 %}
 		<p>${{ coin.price_usd }}<br><span class="red">{{ coin.percent_change_24h }}%</span></p>
 		{% else %}
