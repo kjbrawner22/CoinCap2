@@ -15,8 +15,36 @@ img {
 	display: none;
 }
 
+#back {
+	background-color: lightgray;
+	border-radius: 5px;
+	color: inherit;
+	padding: 5px 10px;
+}
+
+#back:hover {
+	background-color: black;
+	color: white;
+}
+
 #amount {
+	width: 30%;
+	overflow: scroll;
+	border: 1px solid lightgray;
+	border-radius: 5px;
 	text-align: center;
+}
+
+#submit {
+	border-radius: 5px;
+	background-color: lightgray;
+	padding: 1% 2%;
+	border: none;
+}
+
+#submit:hover {
+	background-color: black;
+	color: white;
 }
 
 #delete {
@@ -42,10 +70,24 @@ img {
 	grid-template-columns: repeat(2, 1fr); 
 }
 
-@media only screen and (min-width: 600) {
+@media only screen and (min-width: 600px) {
 	.ccc-widget {
-		width: 50%;
+		width: 80%;
 		margin: 0 auto;
+	}
+
+	#amount {
+		width: 20%;
+	}
+
+	#submit {
+		padding: 5px 10px;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	#amount {
+		width: 10%;
 	}
 }
 

@@ -7,15 +7,15 @@
 
 {% block body %}
 <h2>
-	<img id="logo" src="https://files.coinmarketcap.com/static/img/coins/128x128/{{ coin.id }}.png">
-	<br> {{ coin.rank }}. {{ coin.name }} ({{ coin.symbol }})
+	<img id="logo" src="https://files.coinmarketcap.com/static/img/coins/64x64/{{ coin.id }}.png"><br>
+	<a id="back" href="{{ url_for('portfolio') }}"><i class="fas fa-arrow-left"></i></a> {{ coin.rank }}. {{ coin.name }} ({{ coin.symbol }})
 	<a id="delete" href="{{url_for('delete_coin', coin_id=coin.id)}}">
 		<i class="far fa-trash-alt"></i>
 	</a>
 </h2>
 <form action="" method="post">
 	{{ form.hidden_tag() }}
-	<h3>Holdings({{ coin.symbol }}): {{ form.amount(value=coin.amount) }} {{ form.submit() }}</h3>
+	<h3>Holdings: {{ form.amount(value=coin.amount) }} {{ form.submit() }}</h3>
 </form>
 <script type="text/javascript">
 	baseUrl = "https://widgets.cryptocompare.com/";
