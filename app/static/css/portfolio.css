@@ -67,7 +67,7 @@ h2 {
 
 .coin-row-wrapper {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: 20% 50% 30%;
 	border: 1px solid black;
 }
 
@@ -82,6 +82,10 @@ h2 {
 
 	#coins-wrapper {
 		width: 50%;
+	}
+
+	.coin-row-wrapper {
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
 

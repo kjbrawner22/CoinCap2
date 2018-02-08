@@ -11,6 +11,10 @@ img {
 	text-align: right;
 }
 
+.cryptocompare-logo {
+	display: none;
+}
+
 #amount {
 	text-align: center;
 }
@@ -36,5 +40,12 @@ img {
 	display: grid;
 	width: 90%;
 	grid-template-columns: repeat(2, 1fr); 
+}
+
+@media only screen and (min-width: 600) {
+	.ccc-widget {
+		width: 50%;
+		margin: 0 auto;
+	}
 }
 
