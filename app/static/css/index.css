@@ -18,6 +18,19 @@ h2 {
 	text-align: center;
 }
 
+#mktcap {
+	text-align: center;
+}
+
+#mktcap-desktop {
+	display: none;
+}
+
+#mktcap-mobile {
+	display: inline;
+	margin: 0;
+}
+
 #coins-wrapper {
 	display: grid;
 	width: 95%;
@@ -30,5 +43,13 @@ h2 {
 @media only screen and (min-width: 600px) {
 	#coins-wrapper {
 		width: 50%;
+	}
+
+	#mktcap-desktop {
+		display: inline-block;
+	}
+
+	#mktcap-mobile {
+		display: none;
 	}
 }

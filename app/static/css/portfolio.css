@@ -11,6 +11,19 @@ h2 {
 	text-align: center;
 }
 
+h3 {
+	text-align: center;
+}
+
+.coin-column {
+	display: table;
+}
+
+.coin-column p {
+	display: table-cell;
+	vertical-align: middle;
+}
+
 .red {
 	color: red;
 }
@@ -23,16 +36,20 @@ h2 {
 	display: grid;
 	width: 95%;
 	margin: auto;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-areas: ". title button";
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-areas: "total-value button";
 }
 
-#portfolio-header {
-	grid-area: title;
+#total-value {
+	grid-area: total-value;
+	text-align: left;
+	margin-left: 5%;
 }
 
 #add-coin-header {
+	margin-right: 5%;
 	grid-area: button;
+	text-align: right;
 }
 
 #add-coin-text {

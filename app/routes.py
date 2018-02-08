@@ -12,7 +12,9 @@ from app.models import User, Coin
 @app.route('/')
 def index():
 	title = "Coin Cap | Home"
-	return render_template('index.html', coins=cap.ticker(limit=10), title=title)
+	mktcap = "${:,.2f}".format(cap.stats()['total_market_cap_usd'])
+	return render_template('index.html', coins=cap.ticker(limit=10), 
+												 mktcap=mktcap, title=title)
 
 #login endpoint
 @app.route('/login', methods=['GET', 'POST'])
@@ -70,6 +72,7 @@ def portfolio():
 			c['amount'] = coin.amount
 			coins.append(c)
 			total += c['amount'] * float(c['price_usd'])
+	total = "${:,.2f}".format(total)
 	coins.sort(key=lambda x: (x['amount'] * float(x['price_usd'])), reverse=True)
 	return render_template('portfolio.html', coins=coins, total=total, title=title)
 
