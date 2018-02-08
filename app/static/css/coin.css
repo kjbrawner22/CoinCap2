@@ -11,6 +11,10 @@ img {
 	text-align: right;
 }
 
+.coin-name {
+	display: none;
+}
+
 .cryptocompare-logo {
 	display: none;
 }
@@ -71,6 +75,10 @@ img {
 }
 
 @media only screen and (min-width: 600px) {
+	.coin-name {
+		display: inline-block;
+	}
+
 	.ccc-widget {
 		width: 80%;
 		margin: 0 auto;

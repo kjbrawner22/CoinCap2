@@ -8,7 +8,7 @@
 {% block body %}
 <h2>
 	<img id="logo" src="https://files.coinmarketcap.com/static/img/coins/64x64/{{ coin.id }}.png"><br>
-	<a id="back" href="{{ url_for('portfolio') }}"><i class="fas fa-arrow-left"></i></a> {{ coin.rank }}. {{ coin.name }} ({{ coin.symbol }})
+	<a id="back" href="{{ url_for('portfolio') }}"><i class="fas fa-arrow-left"></i></a> {{ coin.rank }}. <span class="coin-name">{{ coin.name }} (</span>{{ coin.symbol }}<span class="coin-name">)</span>
 	<a id="delete" href="{{url_for('delete_coin', coin_id=coin.id)}}">
 		<i class="far fa-trash-alt"></i>
 	</a>
